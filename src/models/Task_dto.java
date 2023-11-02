@@ -17,6 +17,7 @@ import javax.persistence.Table;
 //一覧表示するデータを取得するためのJPQL
 @NamedQueries({
     @NamedQuery(
+    	//SQLに「getAllMessages」という名前をつけて扱いやすくした
         name = "getAllMessages",
         query = "SELECT m FROM Task_dto AS m ORDER BY m.id DESC"
     )

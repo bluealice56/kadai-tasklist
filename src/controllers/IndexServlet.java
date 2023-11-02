@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -36,10 +37,17 @@ public class IndexServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         EntityManager em = Task_dao.createEntityManager();
 
-        List<Task_dto> tasks = em.createNamedQuery("getAllMessages", Task_dto.class).getResultList();
-        response.getWriter().append(Integer.valueOf(tasks.size()).toString());
+        //引き数の全検索文・getAllMessagesでDBに問い合わせを実行
+        //「getResultList()」で検索結果をリスト形式で取得
+        List<Task_dto> messages = em.createNamedQuery("getAllMessages", Task_dto.class).getResultList();
 
         em.close();
+
+        request.setAttribute("messages", messages);
+
+        //遷移	
+        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/messages/index.jsp");
+        rd.forward(request, response);
     }
 
 }
