@@ -14,6 +14,7 @@
 
 		<%-- index一覧に戻るリンク --%>
         <p><a href="${pageContext.request.contextPath}/index">一覧に戻る</a></p>
+
 		<%-- edit編集に戻るリンク --%>
         <p><a href="${pageContext.request.contextPath}/edit?id=${message.id}">このタスクを編集する</a></p>
 
