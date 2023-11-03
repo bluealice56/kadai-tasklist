@@ -6,12 +6,12 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <title>メッセージボード</title>
+        <title>タスクボード</title>
     </head>
     <body>
         <div id="wrapper">
             <div id="header">
-                <h1>メッセージボード アプリケーション</h1>
+                <h1>タスクボード アプリケーション</h1>
             </div>
             <div id="content">
             <%-- ここにビューの内容が入る --%>
@@ -22,4 +22,4 @@
             </div>
         </div>
     </body>
-</html>
+</html><%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
