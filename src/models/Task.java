@@ -17,14 +17,14 @@ import javax.persistence.Table;
 //一覧表示するデータを取得するためのJPQL
 @NamedQueries({
     @NamedQuery(
-    	//SQLに「getAllMessages」という名前をつけて扱いやすくした
-        name = "getAllMessages",
-        query = "SELECT m FROM Task_dto AS m ORDER BY m.id DESC"
+    	//SQLに「getAlltasks」という名前をつけて扱いやすくした
+        name = "getAlltasks",
+        query = "SELECT m FROM Task AS m ORDER BY m.id DESC"
     )
 })
 
 @Table(name = "tasks")
-public class Task_dto {
+public class Task {
     @Id
     //ID
     @Column(name = "id")

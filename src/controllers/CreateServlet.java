@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import models.Task_dto;
+import models.Task;
 import utils.Task_dao;
 
 /**
@@ -40,7 +40,7 @@ public class CreateServlet extends HttpServlet {
             em.getTransaction().begin();
 
             //DTOのインスタンス
-            Task_dto m = new Task_dto();
+            Task m = new Task();
 
             //価（タスク内容）をフォームから受け取って、String変数に格納
             String content = request.getParameter("content");

@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import models.Task_dto;
+import models.Task;
 import utils.Task_dao;
 
 /**
@@ -37,10 +37,10 @@ public class UpdateServlet extends HttpServlet {
 
             // セッションスコープからメッセージのIDを取得して
             // 該当のIDのメッセージ1件のみをデータベースから取得
-            //id は EditServlet でセッションスコープに保存した message_id のデータを使う。
+            //id は EditServlet でセッションスコープに保存した task_id のデータを使う。
             //request.getSession().getAttribute() を使ってセッションスコープから取得したデータは、
             //汎用的な Object 型になっているため、(Integer) へキャストする。
-            Task_dto m = em.find(Task_dto.class, (Integer)(request.getSession().getAttribute("message_id")));
+            Task m = em.find(Task.class, (Integer)(request.getSession().getAttribute("task_id")));
 
             // フォームの内容を各フィールドに上書き
             String content = request.getParameter("content");
@@ -55,7 +55,7 @@ public class UpdateServlet extends HttpServlet {
             em.close();
 
             // 前のデータを削除
-            request.getSession().removeAttribute("message_id");
+            request.getSession().removeAttribute("task_id");
 
             // indexページへリダイレクト
             response.sendRedirect(request.getContextPath() + "/index");

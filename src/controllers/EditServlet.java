@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import models.Task_dto;
+import models.Task;
 import utils.Task_dao;
 
 /**
@@ -37,20 +37,20 @@ public class EditServlet extends HttpServlet {
         //request.getParameter("id")でURLに記載されたIDの価をString型で取得
         //Integer.parseIntで、String型の価をint型に変える。
         //整数の値でem.findメソッドで検索して、DTO変数に代入する。
-        Task_dto m = em.find(Task_dto.class, Integer.parseInt(request.getParameter("id")));
+        Task m = em.find(Task.class, Integer.parseInt(request.getParameter("id")));
 
         //接続を閉じる
         em.close();
 
         // メッセージ情報とセッションIDをリクエストスコープに登録
-        request.setAttribute("message", m);
+        request.setAttribute("task", m);
         request.setAttribute("_token", request.getSession().getId());
 
         // メッセージIDをセッションスコープに登録
-        request.getSession().setAttribute("message_id", m.getId());
+        request.getSession().setAttribute("task_id", m.getId());
 
         //遷移
-        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/messages/edit.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/tasks/edit.jsp");
         rd.forward(request, response);
     }
 }

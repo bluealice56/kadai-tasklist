@@ -6,14 +6,14 @@
     <c:param name="content">
         <h2>タスク一覧</h2>
         <ul>
-            <c:forEach var="message" items="${messages}">
+            <c:forEach var="task" items="${tasks}">
                 <li>
-                    <a href="${pageContext.request.contextPath}/show?id=${message.id}">
+                    <a href="${pageContext.request.contextPath}/show?id=${task.id}">
                     <%-- valueで価をセット --%>
-                        <c:out value="${message.id}" />
+                        <c:out value="${task.id}" />
                     </a>
                     <%-- valueで価をセット --%>
-                     <c:out value="${message.content}" />
+                     <c:out value="${task.content}" />
                 </li>
             </c:forEach>
         </ul>

@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import models.Task_dto;
+import models.Task;
 import utils.Task_dao;
 
 
@@ -37,16 +37,16 @@ public class IndexServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         EntityManager em = Task_dao.createEntityManager();
 
-        //引き数の全検索文・getAllMessagesでDBに問い合わせを実行
+        //引き数の全検索文・getAlltasksでDBに問い合わせを実行
         //「getResultList()」で検索結果をリスト形式で取得
-        List<Task_dto> messages = em.createNamedQuery("getAllMessages", Task_dto.class).getResultList();
+        List<Task> tasks = em.createNamedQuery("getAlltasks", Task.class).getResultList();
 
         em.close();
 
-        request.setAttribute("messages", messages);
+        request.setAttribute("tasks", tasks);
 
-        //遷移	
-        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/messages/index.jsp");
+        //遷移
+        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/tasks/index.jsp");
         rd.forward(request, response);
     }
 

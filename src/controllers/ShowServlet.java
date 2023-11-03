@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import models.Task_dto;
+import models.Task;
 import utils.Task_dao;
 
 /**
@@ -39,15 +39,15 @@ public class ShowServlet extends HttpServlet {
         //request.getParameter("id")でURLに記載されたIDの価をString型で取得
         //Integer.parseIntで、String型の価をint型に変える。
         //整数の値でem.findメソッドで検索して、DTO変数に代入する。
-        Task_dto m = em.find(Task_dto.class, Integer.parseInt(request.getParameter("id")));
+        Task m = em.find(Task.class, Integer.parseInt(request.getParameter("id")));
 
         //接続を切る。
         em.close();
 
         // メッセージデータをリクエストスコープにセットしてshow.jspを呼び出す
-        request.setAttribute("message", m);
+        request.setAttribute("task", m);
 
-        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/messages/show.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/tasks/show.jsp");
         rd.forward(request, response);
     }
 }
